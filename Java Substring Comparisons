@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Solution {
+    public static String getSmallestAndLargest(String text, int length) {
+          String smallest = text.substring(0,length);
+        String largest = text.substring(0,length);
+        for(int iterator=1; iterator<text.length()-length+1; iterator++){
+            String currentSubString = text.substring(iterator,length+iterator);
+            if(currentSubString.compareTo(smallest) < 0)
+                smallest = currentSubString;
+            if(currentSubString.compareTo(largest) > 0)
+                largest = currentSubString;
+        }
+        return smallest+"\n"+largest;
+    }//end method getSmallestAndLargest(String text, int length)
+  
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.next();
+        int k = scan.nextInt();
+        scan.close();
+      
+        System.out.println(getSmallestAndLargest(s, k));
+    }//end method main()
+}//end Class Solution
