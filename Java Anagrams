@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Solution {
+
+     public static void linearSort(char[] arr){
+        for(int iterator=0; iterator <arr.length-1; iterator++){
+            int minimumIndex=iterator;
+            for( int index=iterator+1; index < arr.length; index++){
+                if(arr[index] < arr[minimumIndex])
+                    minimumIndex = index;
+            }//end inner for loop
+            swap(arr,minimumIndex,iterator);
+        }//end outer loop for loop
+    }//end method linearSort(int[] arr)
+
+    private static void swap(char[] arr, int firstIndex, int secondIndex){
+        char temp = arr[firstIndex];
+        arr[firstIndex] = arr[secondIndex];
+        arr[secondIndex] = temp;
+    }//end method swap
+
+    static boolean isAnagram(String a, String b) {
+        a = a.toLowerCase();
+        b= b.toLowerCase();
+        boolean retStatus = true;
+        if(a.length() != b.length()) return false;
+        else{
+            char[] aArrayOfCharacters = a.toCharArray();
+            char[] bArrayOfCharacters = b.toCharArray();
+            linearSort(aArrayOfCharacters);
+            linearSort(bArrayOfCharacters);
+            for(int i=0; i<aArrayOfCharacters.length; i++){
+                if(aArrayOfCharacters[i] != bArrayOfCharacters[i]) {
+                    retStatus = false;
+                    break;
+                }//end if
+            }//end for
+            return  retStatus;
+    }//end else
+    }//end method isAnagram()
+
+    public static void main(String[] args) {
+    
+        Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        scan.close();
+        boolean ret = isAnagram(a, b);
+        System.out.println( (ret) ? "Anagrams" : "Not Anagrams" );
+    }
+}
