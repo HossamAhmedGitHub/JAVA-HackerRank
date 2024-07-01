@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+          Scanner scanner = new Scanner(System.in);
+        int numbersCount;
+        int queriesCount;
+        String queryType;
+        List<Integer> L = new ArrayList<>();
+        //System.out.print("Enter number of integers: ");
+        numbersCount = scanner.nextInt();
+        //System.out.println("Enter "+numbersCount+" numbers please: ");
+        for(int iterator=0; iterator<numbersCount; iterator++){
+            L.add(scanner.nextInt());
+        }//end for loop
+        //System.out.println("Now Enter the number of queries");
+        queriesCount = scanner.nextInt();
+        for(int iterator=0; iterator<queriesCount; iterator++){
+            queryType = scanner.next();
+            switch (queryType){
+                case "Insert":
+                case "insert":
+                   // System.out.println("please enter index and value");
+                    L.add(scanner.nextInt(),scanner.nextInt());
+                    break;
+                case "Delete":
+                case "delete":
+                   // System.out.println("please enter index to delete");
+                    L.remove(scanner.nextInt());
+                    break;
+                default:
+                  //  System.out.println("invalid input!");
+            }//end swithch case
+        }//end for loop
+
+        /* Now, printing the final list result*/
+        for(Integer x: L){
+            System.out.print(x+" ");
+        }//end for each loop
+
+    }//end method main()
+}//end class Solution
