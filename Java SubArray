@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static Integer countNegativeSubArrays(int[] array){
+        Integer retCounter=0;
+        for (int outerIterator=0; outerIterator<array.length; outerIterator++){
+            Integer outerVariable = array[outerIterator];
+            if(outerVariable<0) retCounter++;
+            for (int innerIterator=outerIterator+1; innerIterator<array.length; innerIterator++){
+                outerVariable+=array[innerIterator];
+                if(outerVariable<0) retCounter++;
+            }//end inner for loop
+        }//end outer for loop
+        return  retCounter;
+    }//end methd countNegativeSubArrays()
+      /*     Main Method to excute the program     */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int sizeOfArray=scanner.nextInt();
+        int[] arr = new int[sizeOfArray];
+        for(int i=0; i<sizeOfArray; i++){
+           arr[i] = scanner.nextInt();
+        }
+        System.out.println(countNegativeSubArrays(arr));
+        scanner.close();          
+}//end main()
+}//end class Solution
