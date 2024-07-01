@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static class Point {
+    private int x;
+    private int y;
+    public Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    public Point(){
+        //empty constructor
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+}//end class Point
+
+    public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+        //System.out.println("Enter number of lines");
+        int sizeOfArray=scanner.nextInt();
+        int targetLine; int targetIndex;
+        int numberofIntegersInLine;
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>(sizeOfArray);
+        for(int i=0; i<sizeOfArray; i++){
+            list.add(new ArrayList<>());
+        }
+        /* Now Entering the input values in each line */
+        for (ArrayList<Integer> object: list){
+            //System.out.println("Enter size of the next line");
+             numberofIntegersInLine=scanner.nextInt();
+            //System.out.println("Enter values");
+            for(int i=0; i<numberofIntegersInLine; i++){
+                object.add(scanner.nextInt());
+            }
+        }//end for input values in each line 
+        /* Handling the query input process */
+        //System.out.println("Enter the number of queries");
+        sizeOfArray=scanner.nextInt();
+        ArrayList<Point> query = new ArrayList<>();
+        for (int i=0; i<sizeOfArray; i++){
+            //System.out.println("Enter targetLine and targetIndex of the query");
+            targetLine= scanner.nextInt();
+            targetIndex= scanner.nextInt();
+            query.add(new Point(targetLine,targetIndex));
+        }//end for of query input process
+        
+        /* now retriving the data */
+        for(Point point: query){
+            try{
+                System.out.println(list.get(point.getX()-1).get(point.getY()-1));
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("ERROR!");
+            }
+        }//end for loop retriving data
+        scanner.close();
+    }//end main
+}//end class Solution
